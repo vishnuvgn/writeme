@@ -1,0 +1,20 @@
+å# Local build output
+writeme
+
+# Local config
+config.yaml
+
+# OS junk
+.DS_Store
+
+# IDE junk
+.vscode/
+.idea/
+
+# Logs/temp
+*.log
+*.tmp
+*.swp
+
+# # GoReleaser output
+# dist/

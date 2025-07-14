@@ -9,6 +9,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var (
+	version = "dev" // default when running locally
+	commit  = "none"
+	date    = "unknown"
+)
+
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "writeme",
@@ -19,6 +25,7 @@ endpoints including openai and llama.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
+	Version: "",
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -28,6 +35,16 @@ func Execute() {
 	if err != nil {
 		os.Exit(1)
 	}
+}
+
+// SetVersionInfo allows main.go to pass in the real version.
+func SetVersionInfo(v, c, d string) {
+	version = v
+	commit = c
+	date = d
+
+	// This makes writeme --version show the version from GoReleaser.
+	rootCmd.Version = version
 }
 
 func init() {

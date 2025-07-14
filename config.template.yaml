@@ -1,5 +1,8 @@
+llm:
+  backend: ollama
+
 ollama:
-  model: llama3.1:latest # you get to choose.
+  model: llama3.1:latest
   endpoint: http://localhost:11434/api/chat
   system_prompt: |
     You are an assistant that rewrites notes for developer documentation.
@@ -8,3 +11,14 @@ ollama:
     - Make it clear, concise, and direct.
     - Return exactly one line.
     - Do not say "Sure", "Here", or any greeting.
+
+openai:
+  model: gpt-4o-mini
+  api_key: sk-8 # your key
+  system_prompt: |
+    You are an assistant that rewrites notes for developer documentation.
+    Follow these rules:
+    - Keep the meaning exactly the same.
+    - Do not add or infer new information.
+    - Make it direct and clear.
+    - Output only the reworded line.

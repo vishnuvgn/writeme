@@ -24,9 +24,9 @@ builds:
       - darwin
     ldflags:
       - -s -w
-      - -X github.com/vishnuvgn/writeme/cmd.version={{ .Version }}
-      - -X github.com/vishnuvgn/writeme/cmd.commit={{ .Commit }}
-      - -X github.com/vishnuvgn/writeme/cmd.date={{ .Date }}
+      - -X writeme/cmd.version={{ .Version }}
+      - -X writeme/cmd.commit={{ .Commit }}
+      - -X writeme/cmd.date={{ .Date }}
 
 
 archives:

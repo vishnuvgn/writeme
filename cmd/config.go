@@ -1,6 +1,5 @@
 /*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-
+Copyright © 2025 vishnu venugopal <vishnuvgn05@gmail.com>
 */
 package cmd
 
@@ -21,7 +20,7 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("config called")
+		fmt.Println("subcommand needed: `writeme config init` or `writeme config edit`")
 	},
 }
 

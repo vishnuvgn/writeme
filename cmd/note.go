@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"writeme/config"
 	"writeme/helpers"
 
 	"github.com/spf13/cobra"
@@ -17,6 +18,21 @@ var noteCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		note := args[0]
+
+		var cfg *config.Config
+		if useAI {
+			fmt.Println("AI flag is set. Validating config...")
+
+			path, err := config.ResolveConfigPath()
+			if err != nil {
+				return fmt.Errorf("could not resolve config path: %w", err)
+			}
+
+			cfg, err = config.LoadConfig(path)
+			if err != nil {
+				return fmt.Errorf("could not load config: %w", err)
+			}
+		}
 
 		// 1. Read NOTES.md
 		content, err := os.ReadFile("NOTES.md")
@@ -44,7 +60,7 @@ var noteCmd = &cobra.Command{
 		// 5. AI rewording
 		if useAI {
 			fmt.Println("AI flag is set. Processing note with AI...")
-			note, err = helpers.RewordNote(note)
+			note, err = helpers.RewordNote(cfg, note)
 			if err != nil {
 				return fmt.Errorf("could not reword note: %w", err)
 			}

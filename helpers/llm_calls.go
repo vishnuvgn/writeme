@@ -6,55 +6,11 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"os"
-
-	"gopkg.in/yaml.v2"
+	"writeme/config"
 )
 
-type LLMConfig struct {
-	Backend string `yaml:"backend"`
-}
-
-type OllamaConfig struct {
-	Model        string `yaml:"model"`
-	Endpoint     string `yaml:"endpoint"`
-	SystemPrompt string `yaml:"system_prompt"`
-}
-
-type OpenAIConfig struct {
-	Model        string `yaml:"model"`
-	APIKey       string `yaml:"api_key"`
-	SystemPrompt string `yaml:"system_prompt"`
-}
-
-type Config struct {
-	LLM    LLMConfig    `yaml:"llm"`
-	Ollama OllamaConfig `yaml:"ollama"`
-	OpenAI OpenAIConfig `yaml:"openai"`
-}
-
-func LoadConfig(path string) (*Config, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, fmt.Errorf("could not read config file: %w", err)
-	}
-
-	var cfg Config
-	err = yaml.Unmarshal(data, &cfg)
-	if err != nil {
-		return nil, fmt.Errorf("could not unmarshal YAML: %w", err)
-	}
-
-	return &cfg, nil
-}
-
 // This is your smart wrapper.
-func RewordNote(note string) (string, error) {
-	cfg, err := LoadConfig("config.yaml")
-	if err != nil {
-		return "", fmt.Errorf("could not load config.yaml: %w", err)
-	}
-
+func RewordNote(cfg *config.Config, note string) (string, error) {
 	switch cfg.LLM.Backend {
 	case "ollama":
 		return RewordNoteWithOllama(&cfg.Ollama, note)
@@ -63,10 +19,9 @@ func RewordNote(note string) (string, error) {
 	default:
 		return "", fmt.Errorf("unsupported backend: %s", cfg.LLM.Backend)
 	}
-
 }
 
-func RewordNoteWithOpenAI(cfg *OpenAIConfig, note string) (string, error) {
+func RewordNoteWithOpenAI(cfg *config.OpenAIConfig, note string) (string, error) {
 	payload := map[string]interface{}{
 		"model":  cfg.Model,
 		"stream": false,
@@ -117,7 +72,7 @@ func RewordNoteWithOpenAI(cfg *OpenAIConfig, note string) (string, error) {
 }
 
 // This does the actual Ollama call.
-func RewordNoteWithOllama(cfg *OllamaConfig, note string) (string, error) {
+func RewordNoteWithOllama(cfg *config.OllamaConfig, note string) (string, error) {
 	payload := map[string]interface{}{
 		"model":  cfg.Model,
 		"stream": false,

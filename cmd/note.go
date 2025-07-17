@@ -48,7 +48,7 @@ var noteCmd = &cobra.Command{
 
 		// 3. Parse headings
 		tree := helpers.ParseHeadings(contentStr)
-		fmt.Printf("Parsed headings: %+v\n", tree)
+		// fmt.Printf("Parsed headings: %+v\n", tree)
 
 		// 4. Select placement
 		placement, err := helpers.SelectPlacement(tree)

@@ -16,8 +16,7 @@ https://drive.google.com/file/d/1nVdbNO9QeiyPoisZ-hF4D4j4oIOAcUIL/view?usp=share
    Visit the [Releases page](https://github.com/vishnuvgn/writeme/releases) and grab the binary for your operating system and CPU architecture.
 
 2. **Install the binary**  
-   - Move the downloaded file into a directory on your `PATH` (for example `/usr/local/bin`).  
-   - Rename it to `writeme` if it isn’t already.
+   - Move the downloaded file into a directory on your `PATH` (for example `/usr/local/bin`). 
 
 3. **Verify the installation**  
    ```bash

@@ -3,6 +3,11 @@
 **Take notes without breaking your flow.**  
 A simple CLI tool to reword your commit messages, ideas, or thoughts using local or cloud-based AI models.
 
+
+## Example:
+https://drive.google.com/file/d/1nVdbNO9QeiyPoisZ-hF4D4j4oIOAcUIL/view?usp=share_link
+
+
 ---
 
 ## Installation

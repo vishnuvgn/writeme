@@ -1,7 +1,7 @@
 # writeme
 
 **Take notes without breaking your flow.**  
-A simple CLI tool to reword your commit messages, ideas, or thoughts using local or cloud-based AI models.
+A simple CLI tool to reword your ideas and thoughts using local or cloud-based AI models.
 
 
 ## Example:
